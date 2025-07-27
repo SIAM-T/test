@@ -9,7 +9,7 @@ Vision:
 Mission:
   - Marketplace for buying/selling CNC-ready design files.
   - Paid job ads for physical hiring.
-  - Buyer requests with automatic file match resolution.
+  - Buyer requests fulfilled through direct seller collaboration.
   - Paid verification and ranking system for designers.
 
 Core Values:
@@ -50,10 +50,12 @@ Core Values:
   - Preview before download
 
 🔍 Buyer Request System:
-  - Image upload + notes
-  - Designers auto-notified if they have a 100% match
-  - Resolved automatically
-  - Expired requests shown
+  - Buyers submit request with reference image & notes
+  - Designers manually browse and contact buyers
+  - Manual collaboration: Designer delivers custom-matching design
+  - No auto file matching system
+  - Requests expire after set time (e.g., 30 days)
+  - Expired requests shown (for analytics or insights)
 
 📢 Job Ads:
   - Paid by designers or CNC owners
@@ -80,6 +82,7 @@ Designer:
 Buyer:
   - Purchase files
   - Post buyer requests
+  - Collaborate with designers for custom design
   - View/download order files
 
 --------------------------------------------------------
@@ -127,9 +130,10 @@ orders:
   - timestamps, price breakdown
 
 buyerRequests:
-  - reference image, notes
-  - auto-matching system
-  - resolved/expired flags
+  - imageUpload, referenceNotes
+  - postedBy: buyer
+  - isExpired, isResolved
+  - manually resolved through direct contact
 
 jobPosts:
   - postedBy: designer or CNC owner
@@ -158,7 +162,8 @@ Orders:
 Buyer Requests:
   - POST /requests
   - GET /requests
-  - POST /requests/:id/resolve
+  - PATCH /requests/:id/resolve (manually marked)
+  - DELETE /requests/:id (admin/mod)
 
 Job Posts:
   - POST /jobs
@@ -170,34 +175,30 @@ Job Posts:
 ## 🚀 Roadmap Summary
 
 Phase 1 (MVP):
-  - Auth, basic gig system, buyer purchase
-  - Admin panel, payment
+  - Auth, design upload, design browsing & purchase
+  - Admin panel, payment integration
 
 Phase 2:
-  - Buyer requests + match
+  - Buyer request system (manual match)
+  - Job ads for hiring
   - Designer dashboard, verification
-  - Paid job posts
 
 Phase 3:
-  - Ranking system, featured listings
-  - Messaging system
+  - Rankings, badges, featured listings
+  - Internal messaging & notifications
 
 --------------------------------------------------------
 
 ## 🛡️ Legal Notes
 
-- Digital downloads only (no physical delivery)
-- Designers must own uploaded files
-- USD only — no in-app currency
-- No restriction on location or contact sharing
+- Digital downloads only (no physical delivery by platform)
+- Designers must own rights to all uploaded files
+- USD only — no in-app tokens or coins
+- No restrictions on global access or contact sharing
+- No auto file matching; buyer-designer collaboration required
 
 --------------------------------------------------------
 
-# 📦 Done!
-This terminal version includes all key points for the CNC Design Marketplace.
-
-You can:
-- Export this as `.txt` or `.md`
-- Use it in README.md or CLI tools
-- Ask for each schema or route individually in terminal-style files
-
+# ✅ All Set!
+This terminal-friendly documentation reflects your updated marketplace logic.
+Let me know if you want this exported as `.txt`, `.md`, `.pdf`, or built into a CLI or onboarding guide.
